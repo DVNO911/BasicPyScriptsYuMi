@@ -1,4 +1,5 @@
-##Simple script to test simulate joint velocities
+#!/usr/bin/env python
+# Simple script to test simulate joint velocities
 
 import rospy
 from std_msgs.msg import String
