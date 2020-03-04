@@ -1,2 +1,2 @@
-float64[] ik_solution
+float64 solution
 
