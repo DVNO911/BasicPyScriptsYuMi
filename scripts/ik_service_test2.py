@@ -1,10 +1,10 @@
 #!/usr/bin/env python
-from basic_py_scripts.srv import InverseKinematics, InverseKinematicsResponse
+from basic_py_scripts.srv import InverseKinematics2, InverseKinematics2Response
 
 from std_msgs.msg import *
+from geometry_msgs import *
 import rospy
-
-
+# Service that can accept a pose and return a solution
 #from numpy.core import float64[]
 
 
