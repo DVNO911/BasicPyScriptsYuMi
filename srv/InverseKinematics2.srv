@@ -1,0 +1,5 @@
+string effector_name
+string tooltip_name
+---
+
+basic_py_scripts/Solution[] solution

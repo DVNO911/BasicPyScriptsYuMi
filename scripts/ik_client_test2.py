@@ -1,18 +1,18 @@
 #!/usr/bin/env python
 # Client that can send a pose and recieve a solution
 
-from std_msgs.msg import *
-from geometry_msgs.msg import *
 import sys
 import rospy
-from basic_py_scripts.srv import InverseKinematics
+from std_msgs.msg import *
+from geometry_msgs.msg import *
+from basic_py_scripts.srv import InverseKinematics2
 
 
-def ik_client(string):
-    rospy.wait_for_service('Compute_Inverse_Kinematics')
+def ik_client(string1, string2, posestamp):
+    rospy.wait_for_service('Compute_Inverse_Kinematics2')
     try:
-        handle_compute_ik = rospy.ServiceProxy('Compute_Inverse_Kinematics', InverseKinematics)
-        resp1 = handle_compute_ik(string)
+        handle_compute_ik2 = rospy.ServiceProxy('Compute_Inverse_Kinematics2', InverseKinematics2)
+        resp1 = handle_compute_ik2(string1, string2, posestamp)
         return resp1.solution
     except rospy.ServiceException:
         print("Service call failed")
@@ -27,20 +27,25 @@ def generate_posestamped():
     poseS.pose.position.x = 1
     poseS.pose.position.y = 2
     poseS.pose.position.z = 3
-    poseS.pose.orientation.x = 1
-    poseS.pose.orientation.y = 1
-    poseS.pose.orientation.z = 1
-    poseS.pose.orientation.w = 1
+    poseS.pose.orientation.x = 0.2
+    poseS.pose.orientation.y = 0
+    poseS.pose.orientation.z = 0.4
+    poseS.pose.orientation.w = 0.5
+    return poseS
+
 def usage():
     #return "%s [x y]"%sys.argv[0]
     return "placeholder"
 
 if __name__ == "__main__":
-    if len(sys.argv) == 2:
+
+    posestamp = generate_posestamped()
+    if len(sys.argv) == 3:
         x = str(sys.argv[1])
+        y = str(sys.argv[2])
     else:
         print(usage())
         sys.exit(1)
     print("Requesting ...")
     print(100)
-    print("%s => %s" % (x, ik_client(x)))
+    print("%s => %s" % (x, ik_client(x, y, posestamp)))

@@ -10,6 +10,7 @@ project(basic_py_scripts)
 find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
+  geometry_msgs
   message_generation
 )
 
@@ -49,7 +50,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## Generate messages in the 'msg' folder
 add_message_files(
    FILES
-   solution.msg
+   Solution.msg
 #   Message2.msg
  )
 
@@ -57,6 +58,7 @@ add_message_files(
  add_service_files(
    FILES
    InverseKinematics.srv
+   InverseKinematics2.srv
  )
 
 ## Generate actions in the 'action' folder
@@ -70,6 +72,8 @@ add_message_files(
  generate_messages(
    DEPENDENCIES
    std_msgs
+   geometry_msgs
+
 )
 
 ################################################
@@ -104,7 +108,7 @@ add_message_files(
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES basic_py_scripts
-  CATKIN_DEPENDS rospy std_msgs message_runtime
+  CATKIN_DEPENDS rospy std_msgs message_runtime geometry_msgs
 #  DEPENDS system_lib
 )
 

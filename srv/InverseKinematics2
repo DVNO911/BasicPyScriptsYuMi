@@ -1,6 +1,0 @@
-string effector_name
-string tooltip_name
-geometry_msg/PoseStamped[] desired_poses
----
-
-basic_py_scripts/Solution[] sols
