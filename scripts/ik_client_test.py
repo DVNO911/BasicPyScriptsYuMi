@@ -29,4 +29,5 @@ if __name__ == "__main__":
         print(usage())
         sys.exit(1)
     print("Requesting ...")
+    print(100)
     print("%s => %s" % (x, ik_client(x)))

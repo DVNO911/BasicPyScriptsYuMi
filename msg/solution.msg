@@ -1,2 +1,2 @@
-float64 solution
+float64[] solution
 
