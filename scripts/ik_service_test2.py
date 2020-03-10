@@ -8,9 +8,11 @@ import rospy
 #from numpy.core import float64[]
 
 
-def handle_compute_ik2(string1, string2, posestamp):
+def handle_compute_ik2(req):
     print("request is ")
-    print(string1 + string2 + posestamp)
+    print(req.effector_name)
+    print(req.tooltip_name)
+    print(req.posestamp)
     print("Returning goal state angles")
     solution = [-1.6031114799568484, -0.3187570069269499, -2.5669119402583984, -1.2030817908523226, 2.403965512561466,
                 0.7742537749351657, -1.3350190150363965]
@@ -21,7 +23,7 @@ def handle_compute_ik2(string1, string2, posestamp):
 
 def ik_server():
     rospy.init_node('ik_server')
-    s = rospy.Service('Compute_Inverse_Kinematics2', InverseKinematics2, handle_compute_ik2)
+    s = rospy.Service('compute_ik2', InverseKinematics2, handle_compute_ik2)
     print("Ready to compute Inverse Kinematics2")
     rospy.spin()
 

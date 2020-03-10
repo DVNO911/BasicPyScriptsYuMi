@@ -9,14 +9,14 @@ from basic_py_scripts.srv import InverseKinematics2
 
 
 def ik_client(string1, string2, posestamp):
-    rospy.wait_for_service('Compute_Inverse_Kinematics2')
+    rospy.wait_for_service('compute_ik2')
     print(2)
     try:
-        handle_compute_ik2 = rospy.ServiceProxy('Compute_Inverse_Kinematics2', InverseKinematics2)
-        print(3)
-        req = basic_py_scripts.srv.InverseKinematics2Request(string1, string2, posestamp)
+        compute_ik2 = rospy.ServiceProxy('compute_ik2', InverseKinematics2)
+        print(3.0001)
+        #req = basic_py_scripts.srv.InverseKinematics2Request(string1, string2, posestamp)
         print(3.1)
-        resp1 = handle_compute_ik2(req)
+        resp1 = compute_ik2(string1, string2, posestamp)
         print(4)
         return resp1.solution
     except rospy.ServiceException:
