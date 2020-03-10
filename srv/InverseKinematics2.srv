@@ -2,4 +2,4 @@ string effector_name
 string tooltip_name
 geometry_msgs/PoseStamped posestamp
 ---
-basic_py_scripts/Solution[] solution
+basic_py_scripts/Solution solution
