@@ -120,4 +120,3 @@ rosrun basic_py_scripts simple_vel.py
 ```
 
 Please note that the simulation doesnt always launch correctly, so restarting it a couple times might be necessary to make this work.
-

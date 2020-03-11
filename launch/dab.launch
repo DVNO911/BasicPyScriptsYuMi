@@ -1,0 +1,5 @@
+<launch>
+<include file = "$(find yumi_launch)/launch/yumi_gazebo_pos_control.launch" />
+<node name = "dab" pkg="basic_py_scripts" type="dab.py" />
+
+</launch>
