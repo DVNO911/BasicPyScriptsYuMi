@@ -22,18 +22,30 @@ print(cl.pole(G)) #print pole
 print(cl.zero(G)) #print zero
 
 
+T = np.arange(0, 40, 0.05);
 # create bode plot
 # mag, phase, w = cl.bode(sys)
 
 
 # plot step response
-T, yout = cl.step_response(I)
-plt.plot(T, yout)
+#T, yout = cl.step_response(I)
+#T, yout, xout = cl.forced_response(I, T, None, 1)
+#plt.plot(T, yout)
 
 # sine wave & square wave for generating reference signals
-time = np.arange(0, 10, 0.1);
-amplitude = np.sin(time)
-# plt.plot(time, signal.square(2*np.pi*time))
+
+amplitude = np.sin(T)
+u = signal.square(0.1 * np.pi*T)
+plt.plot(T,u)
 # plt.plot(time, amplitude)
+
+
+
+# Simulate system
+T, yout, xout = cl.forced_response(I, T, u, 0)
+plt.plot(T,yout)
+
+
+
 # show bode plot
 plt.show()
