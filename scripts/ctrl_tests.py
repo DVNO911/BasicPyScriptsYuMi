@@ -8,15 +8,21 @@ import numpy as np
 import matplotlib.pyplot as plt
 import control as cl
 from simple_pid import PID
+Kp = 2
+Ki = 0.5
 
-num = [0.5]
-den = [1, 0.5]
+num = [2.5]
+den = [1, 2, 0.5]
 
 G = cl.TransferFunction(num, den) # create Transfer Function
 H = cl.TransferFunction(1,1)
-pid = PID(1, 0.2, 0, 1) # setpoint = 1 # not sure if i want to use this
+PI = cl.TransferFunction([Kp, Ki], [1, 0])
+print(PID)
 
-I = cl.feedback(G, H)
+F = cl.series(PI, G)
+sys = cl.feedback(F, H)
+# I = cl.feedback(G, H)
+# F = cl.series(PI, I)
 
 print(cl.pole(G)) #print pole
 print(cl.zero(G)) #print zero
@@ -42,7 +48,7 @@ plt.plot(T,u)
 
 
 # Simulate system
-T, yout, xout = cl.forced_response(I, T, u, 0)
+T, yout, xout = cl.forced_response(sys, T, u, 0)
 plt.plot(T,yout)
 
 
