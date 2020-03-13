@@ -1,25 +1,22 @@
 #! /usr/bin/env python
-
+# This node listens to the /joint_states topic.
 import rospy
-from std_msgs import String
-
+from sensor_msgs.msg import JointState
 
 class Subscriber(object):
     def __init__(self):
-        self.sub = rospy.Subscriber('yumi', String, self.sub_callback)
-        self.current_angles = ()  # dont know yet what the message looks like
+        self.sub = rospy.Subscriber('/joint_states', JointState, self.sub_callback)
+        self.current_state = JointState()  # dont know yet what the message looks like
 
     def sub_callback(self, msg):
-        print("---------------")
-        print(self.String)
-        print("-")
-        print(msg)
-        print("---------------")
-        self.current_angles = msg
+        self.current_state = msg
 
-
-
-if __name__ == "__main__":
+def listener():
     rospy.init_node('simple_class_node', anonymous=True)
     subscriber = Subscriber()
-    rospy.spin
+
+    print(subscriber.current_state)
+    rospy.spin()
+
+if __name__ == "__main__":
+    listener()

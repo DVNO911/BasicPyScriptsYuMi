@@ -11,6 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
   geometry_msgs
+  sensor_msgs
   message_generation
 )
 
@@ -73,6 +74,7 @@ add_message_files(
    DEPENDENCIES
    std_msgs
    geometry_msgs
+   sensor_msgs
 
 )
 
@@ -108,7 +110,7 @@ add_message_files(
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES basic_py_scripts
-  CATKIN_DEPENDS rospy std_msgs message_runtime geometry_msgs
+  CATKIN_DEPENDS rospy std_msgs message_runtime geometry_msgs sensor_msgs
 #  DEPENDS system_lib
 )
 
