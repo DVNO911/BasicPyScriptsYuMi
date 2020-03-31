@@ -23,7 +23,14 @@ This guide, once complete will be added to the cth_yumi repository aswell.
 Install Ros(Melodic) and follow basic user tutorials to get an understanding of how the operative system works.
 
 
-The Industrial Core packages and ABB packages have to be installed. Source these to your main ROS installation. Then, use the command rospack list-names to check that the following packages are installed:
+The Industrial Core packages and ABB packages have to be installed. Source these to your main ROS installation.
+You can install them with the following commands
+``` sudo apt-get install ros-melodic-industrial-core
+sudo apt-get install ros-melodic-abb 
+``` 
+
+
+Then, use the command ```rospack list-names``` to check that the following packages are installed:
 
 abb_driver
 abb_irb2400_moveit_config
@@ -40,6 +47,7 @@ industrial_msgs
 industrial_robot_client
 industrial_robot_simulator
 industrial_trajectory_filters
+
 
 Create the YuMi workspace:
 
@@ -61,11 +69,20 @@ cd $YUMI_WS/src
 git clone https://github.com/kth-ros-pkg/yumi.git
 git clone https://github.com/DVNO911/BasicPyScriptsYuMi.git
 git clone https://github.com/DVNO911/cth_yumi.git
+git clone https://github.com/diogoalmeida/generic_control_toolbox.git
+git clone https://github.com/diogoalmeida/robot_kinematic_services.git
+```
+
+In src/robot_kinematic_services/launch edit file robot_kinematic_services.launch row 5 to
+
+```
+robot_chain_base_link: yumi_base_link
 ```
 
 Run rosdep to resolve dependencies
 
 ```bash
+cd ..
 rosdep install --from-paths src --ignore-src -r -y
 ```
 
@@ -91,7 +108,19 @@ catkin_make -DCMAKE_BUILD_TYPE=Release
 ```
 
 Build again. You might run into some additional problems but if you manage to build the package then the worst is over :)
-The potential problems regard (I believe) some pointers in the URDF/Xacro and/or the necessity of the hector_xacro_tools package. 
+The potential problems regard (I believe) some pointers in the URDF/Xacro and/or the necessity of the hector_xacro_tools package. To install hector_xacro_tools run 
+
+```sudo apt-get install ros-melodic-hector-xacro-tools```
+
+In the document yumi.urdf.xacro found in src/yumi/yumi_description/urdf on row 16, change 
+
+```<xacro:yumi name="yumi" hardware_interface="hardware_interface/$(arg arms_interface)" parent="${yumi_parent}" >```
+
+to 
+
+```<xacro:yumi name="yumi" hardware_interface="hardware_interface/$(arg arms_interface)" parent="yumi_parent" >```
+
+
 
 ## Usage
 
