@@ -73,7 +73,7 @@ git clone https://github.com/diogoalmeida/generic_control_toolbox.git
 git clone https://github.com/diogoalmeida/robot_kinematic_services.git
 ```
 
-In src/robot_kinematic_services/launch edit file robot_kinematic_services.launch row 5 to
+In src/robot_kinematic_services/launch edit file robot_kinematic_services.launch row 5 to **FIXED
 
 ```
 robot_chain_base_link: yumi_base_link
@@ -112,7 +112,7 @@ The potential problems regard (I believe) some pointers in the URDF/Xacro and/or
 
 ```sudo apt-get install ros-melodic-hector-xacro-tools```
 
-In the document yumi.urdf.xacro found in src/yumi/yumi_description/urdf on row 16, change 
+In the document yumi.urdf.xacro found in src/yumi/yumi_description/urdf on row 16, change  **FIXED
 
 ```<xacro:yumi name="yumi" hardware_interface="hardware_interface/$(arg arms_interface)" parent="${yumi_parent}" >```
 
